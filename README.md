@@ -71,10 +71,13 @@ CALL CancelOrderItem(1);
 ## 🧪 Sample Data
 
 ```sql
+-- View some initial data:
 SELECT * FROM Users;
 SELECT * FROM MenuItems;
 SELECT * FROM RestaurantTables;
 ```
+
+To reset sample data, simply truncate and re-run the relevant `INSERT` statements.
 
 * Users: alice (waiter), bob (chef), carol (manager)
 * Items: Coke, Burger (modifier: Extra Cheese)
@@ -82,21 +85,18 @@ SELECT * FROM RestaurantTables;
 
 ---
 
-## 📸 Demo Suggestions
+## 📸 Demo Flow
 
-If recording a walkthrough:
+Follow this recommended order when testing or demonstrating the system:
 
-1. Show database setup
-2. Insert sample data
-3. Place and modify orders
-4. Trigger low inventory alert
-5. Query views for reports
+1. **Database Setup** – Create the schema and run the SQL script.
+2. **Insert Sample Data** – Add initial users, items, and tables.
+3. **Place Orders** – Use the `PlaceOrder` procedure.
+4. **Inventory Updates** – Restock and simulate low inventory using `RestockInventory`.
+5. **Cancel Order Items** – Demonstrate partial cancellation with `CancelOrderItem`.
+6. **Query Views** – Show `DailySales` and `LowStockItems` views.
 
 ---
-
-## 📄 License
-
-This project is for educational and demonstration purposes only.
 
 ---
 
