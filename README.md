@@ -37,7 +37,7 @@ Run the full `restaurant_schema.sql` file in MySQL Workbench.
 
 ---
 
-## 📦 Usage Examples (from `demo_script.sql`)
+## 📦 Usage Examples (from `demo.sql`)
 
 ### ➕ Place Order
 ```sql
