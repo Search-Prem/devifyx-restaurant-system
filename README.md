@@ -8,53 +8,48 @@ An advanced backend system that simulates a full-fledged restaurant management a
 
 ## 🚀 Features
 
-* 🔐 **User & Role Management** (Waiter, Chef, Manager)
-* 📋 **Menu Management** with categories and modifiers
-* 🍽️ **Order Placement & Tracking** with item-level status
-* 🪑 **Table Reservation System** with status tracking
-* 🥫 **Inventory Management** with alerts and usage logs
-* 🔧 **Kitchen Queue** routing and prioritization
-* 📊 **Reporting & Analytics** via SQL views
+- 🔐 **User & Role Management** (Waiter, Chef, Manager)
+- 📋 **Menu Management** with categories and modifiers
+- 🍽️ **Order Placement & Tracking** with item-level status
+- 🪑 **Table Reservation System** with status tracking
+- 🥫 **Inventory Management** with alerts and usage logs
+- 🔧 **Kitchen Queue** (planned for extension)
+- 📊 **Reporting & Analytics** via SQL views
 
 ---
 
 ## 🛠️ Tech Stack
-
-* MySQL (Schema, Procedures, Triggers, Views)
-* No external programming language required
+- MySQL (Schema, Procedures, Triggers, Views)
+- No external programming language required
 
 ---
 
 ## 🧰 Setup Instructions
 
 1. **Create Database**
-
 ```sql
 CREATE DATABASE devifyx_restaurant;
 USE devifyx_restaurant;
 ```
 
 2. **Import the SQL Script**
-   Run the contents of `restaurant_schema.sql` using MySQL Workbench or any SQL client.
+Run the full `restaurant_schema.sql` file in MySQL Workbench.
 
 ---
 
-## 📦 Usage Examples
+## 📦 Usage Examples (from `demo_script.sql`)
 
 ### ➕ Place Order
-
 ```sql
-CALL PlaceOrder(1, 'John Doe', 1);
+CALL PlaceOrder(1, 'John Doe', 1, 1, 2);
 ```
 
 ### 🔄 Restock Inventory
-
 ```sql
-CALL RestockInventory(1, 20, 1);
+CALL RestockInventory(1, 5.5);
 ```
 
 ### ❌ Cancel Order Item
-
 ```sql
 CALL CancelOrderItem(1);
 ```
@@ -63,43 +58,41 @@ CALL CancelOrderItem(1);
 
 ## 🔍 Views for Reporting
 
-* `DailySales` – Date-wise sales summary by item
-* `LowStockItems` – Real-time low inventory view
+- `DailySales` – Date-wise item sales and revenue
+- `LowStockItems` – Inventory below threshold
 
 ---
 
 ## 🧪 Sample Data
-
 ```sql
--- View some initial data:
 SELECT * FROM Users;
 SELECT * FROM MenuItems;
 SELECT * FROM RestaurantTables;
+SELECT * FROM InventoryItems;
 ```
+- Users: alice (waiter), bob (chef), carol (manager)
+- Items: Latte, Veggie Wrap (with Extra Shot, Add Avocado modifiers)
+- Inventory: Coffee Beans, Fresh Vegetables
 
-To reset sample data, simply truncate and re-run the relevant `INSERT` statements.
-
-* Users: alice (waiter), bob (chef), carol (manager)
-* Items: Coke, Burger (modifier: Extra Cheese)
-* Tables: T1 (Main Hall), T2 (Balcony)
+To reset sample data, truncate relevant tables and re-run the INSERT statements.
 
 ---
 
 ## 📸 Demo Flow
 
-Follow this recommended order when testing or demonstrating the system:
+Follow this flow during your walkthrough:
 
-1. **Database Setup** – Create the schema and run the SQL script.
-2. **Insert Sample Data** – Add initial users, items, and tables.
-3. **Place Orders** – Use the `PlaceOrder` procedure.
-4. **Inventory Updates** – Restock and simulate low inventory using `RestockInventory`.
-5. **Cancel Order Items** – Demonstrate partial cancellation with `CancelOrderItem`.
-6. **Query Views** – Show `DailySales` and `LowStockItems` views.
+1. **Database Setup** – Show schema creation
+2. **View Sample Data** – Use `SELECT` statements
+3. **Place Order** – Call `PlaceOrder` and view inserted rows
+4. **Restock Inventory** – Call `RestockInventory`
+5. **Cancel Order Item** – Use `CancelOrderItem`
+6. **Trigger Low Inventory** – Run an `UPDATE` that raises a SIGNAL
+7. **Run Reports** – Query `DailySales` and `LowStockItems`
 
----
+> ⚠️ Note: The `low inventory` update intentionally triggers a MySQL SIGNAL. Explain that this is expected behavior implemented via a trigger.
 
 ---
 
 ## 👨‍💻 Author
-
 **Prem Kumar Garapati**
